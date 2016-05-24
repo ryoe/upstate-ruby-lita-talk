@@ -10,7 +10,7 @@
 		<meta name="author" content="Rick Yoesting">
 
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/night.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -27,19 +27,21 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section><h1>Intro to ChatOps with Lita</h1>
+				<section>
+				<h1>Intro to ChatOps with Lita</h1>
 				<h2>An Upstate Ruby lightning talk</h2>
 				<h4>May 25, 2016</h4>
 				<p>
-				<small><a href="https://twitter.com/ryoe_ok">Rick Yoesting</a>
-				<br/><a href="https://github.com/ryoe/">github.com/ryoe</a>
-				<br/><a href="https://twitter.com/ryoe_ok">@ryoe_ok</a>
+				<small>
+					<a href="https://twitter.com/ryoe_ok">Rick Yoesting</a><br/>
+					<a href="https://github.com/ryoe">ryoe on GitHub</a>
+					<a href="http://twitter.com/ryoe_ok">@ryoe_ok on Twitter</a><br/>
 				</small>
 					</p>
 				</section>
 				<section>
-				<h2>About me</h2>
-				<h3>Places I have not worked</h3>
+				<h1>About me</h1>
+				<h2>Places I have not worked</h2>
 				<ul>
 				<li>GitHub</li>
 				<li>StackStorm</li>
@@ -49,12 +51,208 @@
 				<li>VictorOps</li>
 				</ul>
 				</section>
+				
 				<section>
-				<h2>About me</h2>
-				<h3>Places I have worked</h3>
-				<p>A bunch of tiny companies you've never heard of!</p>
+				<h1>About me</h1>
+				<h2>Places I have worked</h2>
+				<p>A number of companies that are not world famous. <span class="fragment">(Yet?)</span></p>
+				<p class="fragment">
+				Currently, <b>Clown Shoes Wrangler</b> at <a href="https://raisemore.com">RaiseMore</a>.
+				</p>
+
 				</section>
-			</div>
+
+				<section>
+				<h2>Why listen to me?</h2>
+				<img class="fragment" src="./images/four-stars.png">
+
+				<aside class="notes">
+					I gave a lighning talk on Hubot scripts in Aug. 2014 and after all that time... 4 stars.
+					Some you could say I'm kind of an expert. ;-)
+				</aside>
+
+				</section>
+				
+				<section>
+				<h1>ChatOps</h1>
+				<h2>What is it even?</h2>
+				<aside class="notes">
+				Chat connects people near and far.
+
+				At it's core, ChatOps is about communication, transparency, automation, and feedback. It's about bringing tools into the conversations you're already having in chat.
+				But it's not all about work... it's also about fun!
+				And building company culture.
+
+				</aside>
+				</section>
+				
+				<section>
+				<h1>Communication</h1>
+				<aside class="notes">
+				"Conversation Driven Development"
+				Chat is where the action is... 
+				when the building is on fire!
+
+				and when the good times roll!
+				It's where the people are.
+
+				</aside>
+				</section>
+
+				<section>
+				<h1>Automation</h1>
+				<ul>
+				<li>Repeatable</li>
+				<li>Reliable</li>
+				</ul>
+				<aside class="notes">
+				
+				Automating tricky, cumbersome or error-prone tasks is always a good idea.
+				Write a script for it and run it from chat.
+				This makes such a process repeatble and realiable.
+
+
+				</aside>
+				</section>
+
+				<section>
+				<h1>Transparency</h1>
+				<aside class="notes">
+				Web hooks from external sources providing info.
+
+				Surfacing information to make informed decisions. Run a report. Show a graph. 
+				Error logs. 
+				Commands to retrieve info, perform tasks and report those results.
+
+				All of this feedback happens in chat for all to see and learn from.
+
+				In this way training is "free."
+
+				</aside>
+				</section>
+
+
+				<section>
+				<h1>Fun</h1>
+				<aside class="notes">
+				Never discount the value of fun! We're all people.
+
+				</aside>
+				</section>
+
+				<section>
+				<h1>ChatBots</h1>
+				<ul>
+				<li>Hear</li>
+				<li>Respond</li>
+				</ul>
+
+				<aside class="notes">
+				ChatBots primarily do two things...
+				Hear - "listen" for words/phrases, then take action
+				Respond to commands - perform tasks of some kind when specifically instructed to do so
+				</aside>
+				</section>
+
+				<section>
+				<h1>Hear</h1>
+				<h2>Example 1</h2>
+				<img src="./images/notify-payroll.png">
+
+				<aside class="notes">
+				In this case, using feature provided by Slack. You don't have to roll your own for everything.
+				</aside>
+				</section>
+
+<!-- 				<section>
+				<h1>Hear Example 2</h1>
+				<img class="fragment" src="./images/notify-payroll.png">
+
+				<aside class="notes">
+				In this case, using feature provided by Slack. You don't have to roll your own for everything.
+				</aside>
+				</section>
+ -->
+				<section>
+				<h1>Respond</h1>
+				<h2>Example 1</h2>
+				<img src="./images/build-version.png">
+
+				<aside class="notes">
+				Queue a build... so easy, anyone can do it.
+				</aside>
+				</section>
+
+				<section>
+				<h1>Respond</h1>
+				<h2>Example 2</h2>
+				<img src="./images/sanity-check.png">
+
+				<aside class="notes">
+				Internal tooling...
+				</aside>
+				</section>
+
+				<section>
+				<h1>Respond</h1>
+				<h2>Example 3</h2>
+				<img src="./images/link-me-staging.png">
+
+				<aside class="notes">
+				Misc. curated links for various systems/environments.
+				</aside>
+				</section>
+
+				<section>
+				<h1>Respond</h1>
+				<h2>Example 4</h2>
+				<img src="./images/rollout-prediction.gif">
+
+				<aside class="notes">
+				:-D
+				</aside>
+				</section>
+
+				<section>
+				<h1>Hello, Lita</h1>
+
+				<aside class="notes">
+				:-D
+				</aside>
+				</section>
+
+				<section>
+				<h1>Regular Expressions</h1>
+				<p>Love 'em or hate 'em, you can't avoid them</p>
+
+				<img class="fragment" src="./images/link-me-regex.png">
+
+
+				<aside class="notes">
+				All routing is handled via RegEx, so... 
+				If you need help, I got your back!
+				</aside>
+				</section>
+
+				<section>
+					<h1>Thank You!</h1>
+					<h1>&nbsp;</h1>
+					<h3>Intro to ChatOps with Lita</h3>
+					<h4>An Upstate Ruby lightning talk</h4>
+				<p>&nbsp;</p>
+				<p>
+					<strong>Sample Scripts</strong></br>
+					<strong>upstate-ruby-demo.rb and upstate-ruby-demo-greetings.rb</strong></br>
+					<a href="https://github.com/ryoe/upstate-ruby-demo">https://github.com/ryoe/upstate-ruby-demo</a>
+				</p>
+
+				<p>&nbsp;</p>
+				<p>
+					<strong>Comments or Questions?</strong></br>
+					<a href="http://twitter.com/ryoe_ok">@ryoe_ok on Twitter</a><br/>
+					<a href="https://github.com/ryoe">ryoe on GitHub</a>
+				</p>
+				</section>			</div>
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
