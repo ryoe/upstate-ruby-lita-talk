@@ -238,6 +238,7 @@
 
 				<aside class="notes">
 				:-D
+				Tell story of all night rollouts...
 				</aside>
 				</section>
 
@@ -284,8 +285,8 @@
 				<ul>
 					<li>Runs on Ruby</li>
 					<li>Many chat adapters available</li>
-					<li>Easy testing plugins with RSpec extras</li>
-					<li>Leverage Ruby ecosystem:
+<!-- 					<li>Easy testing plugins with RSpec extras</li>
+ -->					<li>Leverage Ruby ecosystem:
 					<ul>
 						<li>RubyGems</li>
 						<li>Bundler</li>
@@ -655,7 +656,7 @@ GNOP
 				<h3>handlers/helpers.rb</h3>
 <pre><code>module Lita
   module Handlers
-    class Stars < Handler
+    class Helpers < Handler
       route(/helper[s|z] (\d*){1}/i, :puts_helper, command: true)
 
       def puts_helper response
@@ -690,6 +691,15 @@ match_data: helpers 42
 args ["42"]
 message: #<Lita::Message:0x007fbb91398da8>
 user: #<Lita::User:0x007fbb91a362a0>
+extensions: {}
+Shh! This is private!
+Hola!
+Lita > lita helpers 42 21
+matches: [["42"]]
+match_data: helpers 42
+args ["42", "21"]
+message: #<Lita::Message:0x007fd06c333dc8>
+user: #<Lita::User:0x007fd06c34a1e0>
 extensions: {}
 Shh! This is private!
 Hola!
@@ -735,22 +745,232 @@ Wow! 4 stars!
 You must be an internationally recognized expert!
 </pre></h3>
 				<aside class="notes">
-				"Hear" is basically the honey badger! It don't care!
+				:-D
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1>Chat routes</h1>
+				<h2 class="monospace">restrict_to</h2>
+<h3><pre><code>module Lita
+  module Handlers
+    class Destroyer < Handler
+      route(/destroy everything/, :destroy_it, command: true,
+        restrict_to: [:authorized_destroyers])
+
+      def destroy_it response
+        response.reply "Sweet! Let's break stuff!"
+      end
+
+      Lita.register_handler(self)
+    end
+  end
+end
+</code></pre></h3>
+
+				<aside class="notes">
+				For this work, you'll have to configure "Admins" in lita_config.rb. 
+				Then admins can add users to groups.
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h2>Authorization groups</h2>
+				<h3>lita_config.rb</h3>
+<h2 class="monospace"><pre><code>Lita.configure do |config|
+
+  # add adapter-specific ids
+  config.robot.admins = ["42", "21"]
+
+end</code></pre></h2>
+
+				<aside class="notes">
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h2>Authorization groups</h2>
+				<h3>Admins in action</h3>
+
+<h3 class="monospace"><pre class="terminal">
+Lita > lita auth add Michelle to authorized_destroyers
+Michelle was added to authorized_destroyers
+Lita > lita auth remove Michelle to authorized_destroyers
+Michelle was removed to authorized_destroyers
+</pre></h3>
+
+				<aside class="notes">
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1 class="monospace">http client</h2>
+<pre><code>module Lita
+  module Handlers
+    class Nerdbeers < Handler
+      route(/nerdbeers/i, :nerdbeers, command: true,
+        help: { "nerdbeers" => "replies with current nerdbeers agenda" })
+
+      def nerdbeers response
+        http_response = http.get "http://nerdbeers.com/api/"
+        agenda = MultiJson.load http_response.body
+
+        message = []
+        agenda['pairings'].each {|a| 
+          message.push "Pairing ##{a['id']} => Topic: #{a['topic']} Beer: #{a['beer']}"
+        }
+
+        response.reply message.join "\n"
+      end
+
+      Lita.register_handler(self)
+    end
+  end
+end</code></pre>
+
+				<aside class="notes">
+				class var http is actually a Faraday::Connection. So anything you can do with Faraday, you can do here.
 				</aside>
 				</section>
 
 
 				<section data-background="#337ab7">
-				<h2>HTTP routes</h2>
+				<h1>HTTP routes</h1>
+				<h2>Supported verbs</h2>
+				<table>
+				<tbody>
+					<tr class="no-row-border">
+						<td>* HEAD</td>
+						<td>* GET</td>
+					</tr>
+					<tr class="no-row-border">
+						<td>* POST</td>
+						<td>* PUT</td>
+					</tr>
+					<tr class="no-row-border">
+						<td>* PATCH</td>
+						<td>* DELETE</td>
+					</tr>
+					<tr class="no-row-border">
+						<td>* OPTIONS</td>
+						<td>* LINK</td>
+					</tr>
+					<tr class="no-row-border">
+						<td>* UNLINK</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+				</table>
 
 				<aside class="notes">
-				:-D
+				Built-in HTTP server supports all the HTTP verbs
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1>HTTP GET</h1>
+<h3 class="fragment"><pre><code>module Lita
+  module Handlers
+    class UpstateHttp
+      extend Lita::Handler::HTTPRouter
+
+      http.get "/upstate", :ruby
+
+      def ruby request, response
+        response.body << "Ruby"
+      end
+
+      Lita.register_handler(UpstateHttp)
+    end
+  end
+end
+</code></pre></h3>
+
+				<aside class="notes">
+				What kind of ChatOps discussion can this be with a "pinger" route?
+
+				You don't have to inherit directly from Lita's Handler class.
+				Notice this time we're extending HTTPRouter "Mixin" style. 
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1 class="monospace">GET /upstate</h1>
+
+				<img class="no-border" src="./images/upstate-ruby-http.png">
+
+				<aside class="notes">
+				Went to the well, one more time!
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1>HTTP GET</h1>
+				<h2>Advanced routing</h2>
+<pre><code>module Lita
+  module Handlers
+    class StarsHttp < Handler
+      http.get "/stars/:num", :star_rating
+
+      def star_rating request, response
+        starz = request.env["router.params"][:num].to_i
+        message = starz &lt; 4 ? "You are not your star count! We &lt;3 you!" :
+           "Wow! #{starz} stars!\nYou must be an internationally recognized expert!"
+
+        body = { starz: starz, message: message }
+
+        response.headers["Content-Type"] = "application/json"
+        response.write MultiJson.dump(body)
+      end
+
+      Lita.register_handler(self)
+    end
+  end
+end
+</code></pre>
+
+				<aside class="notes">
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1 class="monospace">GET /stars/4</h1>
+
+				<img class="no-border" src="./images/stars-http.png">
+
+				<aside class="notes">
+				Went to the well, one more time!
+				</aside>
+				</section>
+
+
+				<section data-background="#337ab7">
+				<h2>Wait there's more!</h2>
+				<ul>
+					<li>Event routes</li>
+					<li>Mixins</li>
+					<li>Helpers</li>
+					<li>Timers</li>
+					<li>Configuration</li>
+					<li>Templates</li>
+				</ul>
+
+				<aside class="notes">
+				Event routes - handle or trigger events like "connected"
+				Mixins - ChatRouter, EventRouter, HTTPRouter
+				Helpers - robot, redis, http, translate, after/every, config, log
+				Timers - 
+				Configuration - 
+				Templates - can use .erb for chat provider-specific rendering
 				</aside>
 				</section>
 
 
 
-				<section data-background-transition="zoom">
+
+
+<!-- 				<section data-background-transition="zoom">
 				<h1>Love your users!</h1>
 				<h2>Always add <span class="monospace">help</span></h2>
  <h3 class="monospace"><pre class="terminal">
@@ -765,9 +985,25 @@ Lita: stars <num> - replies with your star rating</pre></h3>
 				<aside class="notes">
 				</aside>
 				</section>
-
+ -->
 				<section data-background="green" data-background-transition="zoom">
 				<h1>Resources</h1>
+
+ 				<ul>
+				<li>GitHub
+				<ul>
+					<li><a href="https://www.youtube.com/watch?v=NST3u-GjjFw">ChatOps at GitHub</a></li>
+					<li><a href="https://www.youtube.com/watch?v=pCVvYCjvoZI">ChatOps: Augmented Reality for Ops</a></li>
+				</ul>
+				</li>
+				<li>StackStorm - <a href="https://stackstorm.com/2015/12/10/chatops_pitfalls_and_tips/">Chatops Pitfalls and Tips</a></li>
+				<li>Atlassian - <a href="http://blogs.atlassian.com/2016/01/what-is-chatops-adoption-guide/">What is ChatOps? A guide to its evolution, adoption, and significance</a></li>
+				<li>FlowDock - <a href="http://blog.flowdock.com/2014/11/11/chatops-devops-with-hubot/">ChatOps: Everything about deployments right inside your chat</a></li>
+				<li>PagerDuty - <a href="https://www.pagerduty.com/blog/what-is-chatops/">So, What is ChatOps? And How do I Get Started?</a></li>
+				<li>VictorOps - <a href="https://victorops.com/chatops-for-dummies/">ChatOps for Dummies</a></li>
+				<li><a href="https://reddit.com/r/chatops">reddit.com/r/chatops</a></li>
+				</ul>
+
 
 				<aside class="notes">
 				:-D
@@ -776,17 +1012,13 @@ Lita: stars <num> - replies with your star rating</pre></h3>
 
 				<section>
 					<h1>Thank You!</h1>
-					<h1>&nbsp;</h1>
 					<h3>Intro to ChatOps with Lita</h3>
 					<h4>An Upstate Ruby lightning talk</h4>
-				<p>&nbsp;</p>
 				<p>
 					<strong>Sample Scripts</strong></br>
-					<strong>upstate-ruby-demo.rb and upstate-ruby-demo-greetings.rb</strong></br>
 					<a href="https://github.com/ryoe/upstate-ruby-demo">https://github.com/ryoe/upstate-ruby-demo</a>
 				</p>
 
-				<p>&nbsp;</p>
 				<p>
 					<strong>Comments or Questions?</strong></br>
 					<a href="http://twitter.com/ryoe_ok">@ryoe_ok on Twitter</a><br/>
