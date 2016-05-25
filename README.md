@@ -1,4 +1,4 @@
-http://ryoe.github.io/upstate-ruby-lita-talk
+upstate-ruby-lita-talk
 ================
 
 Here are the slides from my [Update Ruby](http://www.meetup.com/Upstate-Ruby/) Lightning Talk.

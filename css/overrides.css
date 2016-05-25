@@ -7,12 +7,9 @@ a.white-text {
 tr.no-row-border td {
   border: none;
 }
-pre.code {
-  width: 800px;
-  margin: auto;
+pre.terminal {
   background-color: black;
   color: green;
-  font-size: 32px;
 }
 .reveal section img.no-border {
   border: none;

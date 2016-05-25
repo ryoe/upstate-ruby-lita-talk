@@ -69,7 +69,7 @@
 
 				<aside class="notes">
 					I gave a lighning talk on Hubot scripts in Aug. 2014 and after all that time... 4 stars.
-					Some you could say I'm kind of an expert. ;-)
+					I guess you could say I'm kind of an expert. ;-)
 				</aside>
 
 				</section>
@@ -224,6 +224,16 @@
 				<section>
 				<h1>Respond</h1>
 				<h2>Example 4</h2>
+				<img src="./images/corp-bs.png">
+
+				<aside class="notes">
+				:-D
+				</aside>
+				</section>
+
+				<section>
+				<h1>Respond</h1>
+				<h2>Example 5</h2>
 				<img src="./images/rollout-prediction.gif">
 
 				<aside class="notes">
@@ -234,16 +244,28 @@
 				<section data-background="red">
 				<h1>WARN:</h1>
 				<h2>Regular Expressions</h2>
-				<p>Love 'em or hate 'em, you can't avoid them</p>
-
-				<img class="fragment" src="./images/link-me-regex.png">
-
+				<p>Love 'em or hate 'em, you can't avoid 'em</p>
+				<p><br></p>
+				<p><br></p>
+				<h3 class="fragment">If you do hate 'em...</h3>
 
 				<aside class="notes">
 				All routing is handled via RegEx, so... 
+				</aside>
+				</section>
+
+				<section data-background="green">
+				<h1>I've got you!</h1>
+				<h2><3 <3 <3</h2>
+
+				<img src="./images/link-me-regex.png">
+
+
+				<aside class="notes">
 				If you need help, I got your back!
 				</aside>
 				</section>
+
 
 				<section data-background="#337ab7" data-background-transition="zoom">
 				<h1>Hello, Lita</h1>
@@ -256,7 +278,6 @@
 				:-D
 				</aside>
 				</section>
-
 
 				<section data-background="#337ab7">
 				<h1>Why Lita?</h1>
@@ -304,12 +325,11 @@
 				<section data-background="#337ab7">
 				<h1>Create your bot</h1>
 				<h2 class="monospace">lita new</h2>
-				<pre class="code">
+<h2 class="monospace"><pre class="terminal">
 $ lita new
       create  lita
       create  lita/Gemfile
-      create  lita/lita_config.rb
-				</pre>
+      create  lita/lita_config.rb</pre></h2>
 				<aside class="notes">
 				:-D
 				</aside>
@@ -329,17 +349,13 @@ $ lita new
 
 				<section data-background="#337ab7">
 				<h1>Name your bot</h1>
-				<p>Edit lita_config.rb</p>
-<pre>
-				<code>
-Lita.configure do |config|
+				<h2 class="monospace">lita_config.rb</h2>
+<h2 class="monospace"><pre><code>Lita.configure do |config|
 
   # The name your robot will use.
   config.robot.name = "Johnny Five"
 
-end
-				</code>
-				</pre>
+end</code></pre></h2>
 				<aside class="notes">
 				:-D
 				</aside>
@@ -356,10 +372,21 @@ end
 				</aside>
 				</section>
 
+
 				<section data-background="#337ab7">
-				<h1>Make a chat bot</h1>
-				<h3>Because <b>Lita</b> is better with friends!</h3>
+				<h1>Plugins</h1>
+				<h2>Getting more out of Lita</h2>
+				<ul>
+					<li>Adapters</li>
+					<li>Handlers</li>
+					<li>Extensions</li>
+				</ul>
+
 				<aside class="notes">
+				Adapters - used to connect to a chat service.
+				Handlers - add new runtime functionality
+				Extensions - add new functionality to Lita's core.
+				From Lita docs: Note: Extensions are an advanced topic and most of the time you won't need to write them yourself.
 				</aside>
 				</section>
 
@@ -404,6 +431,7 @@ end
 				</table>
 
 				<p>
+				<br/>
 				<a class="white-text" href="https://plugins.lita.io/#adapters">https://plugins.lita.io/#adapters</a>
 				</p>
 				<aside class="notes">
@@ -413,26 +441,27 @@ end
 				</section>
 
 				<section data-background="#337ab7">
-				<h1>Adapter</h1>
-				<h2>Slack Example</h2>
-				<p>lita_config.rb</p>
-<pre>
-				<code>
-Lita.configure do |config|
+				<h1>Make a chat bot</h1>
+				<h3>Because <b>Lita</b> is better with friends!</h3>
+				<aside class="notes">
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1>Adapter Config</h1>
+				<h3>lita_config.rb</h3>
+<h2 class="monospace"><pre><code>Lita.configure do |config|
   config.robot.adapter = :slack
-  config.adapters.slack.token = "abcd-1234567890-hWYd21AmMH2UHAkx29vb5c1Y"
-end				</code>
-				</pre>
-				<p>Gemfile</p>
-<pre>
-				<code>
-source "https://rubygems.org"
+  config.adapters.slack.token = "my-token"
+end
+</code></pre>
+				<h3>Gemfile</h3>
+<h2 class="monospace"><pre><code>source "https://rubygems.org"
 
 gem "lita"
 gem "lita-slack"
+</code></pre>
 
-				</code>
-				</pre>
 				<aside class="notes">
 				This example is Slack. There are several other config options, so always consult the docs for your chosen adapter.
 				Add the gem, bundle install and lita start!
@@ -440,13 +469,310 @@ gem "lita-slack"
 				</section>
 
 				<section data-background="#337ab7">
-				<h1>Plugins</h1>
-				<h2>Extending Lita</h2>
+				<h1>Handlers</h1>
+				<h2>What it do?</h2>
+				<ul>
+					<li>Chat routes</li>
+					<li>HTTP routes</li>
+					<li>Event routes</li>
+				</ul>
+
+				<aside class="notes">
+				Chat routes - your basic "hear" and "respond"
+				HTTP routes - make HTTP requests to Lita's built-in web server (Faraday client, Rack::Request, Rack::Response)
+				Event routes - Lita has built-in pub/sub system. Handlers can communicate and/or respond to arbitrary system events.
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1>Handlers</h1>
+				<ul>
+					<li>Install a gem<sup>*</sup></li>
+					<li>Roll your own</li>
+				</ul>
+
+				<p><br><sup>*</sup><a class="white-text" href="https://plugins.lita.io/#handlers">plugins.lita.io/#handlers</a></p>
 				<aside class="notes">
 				:-D
 				</aside>
 				</section>
 
+				<section data-background="#337ab7">
+				<h2>Chat route "hear"</h2>
+
+				<h3>handlers/ping.rb</h3>
+<h3 class="monospace"><pre><code>module Lita
+  module Handlers
+    class Ping < Handler
+      route(/ping/, :pong, 
+        help: { "ping" => "replies back with PONG" })
+
+      def pong response
+      	response.reply "PONG"
+      end
+
+      Lita.register_handler(self)
+    end
+  end
+end</code></pre>
+</h3>
+
+				<h3>lita_config.rb</h3>
+<h3 class="monospace"><pre><code>require './handlers/ping.rb'
+
+Lita.configure do |config|
+  # my config
+end
+</code></pre>
+</h3>
+				<aside class="notes">
+				:-D
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h2>Chat route "hear"</h2>
+
+				<h3><span class="monospace">command</span> defaults to false</h3>
+<h3 class="monospace"><pre><code>module Lita
+  module Handlers
+    class Ping < Handler
+      route(/ping/, :pong,
+        command: false, # defaults false
+        help: { "ping" => "replies back with PONG" })
+
+      def pong response
+      	response.reply "PONG"
+      end
+
+      Lita.register_handler(self)
+    end
+  end
+end</code></pre>
+</h3>
+				<aside class="notes">
+				:-D
+				</aside>
+				</section>
+				<section data-background="#337ab7">
+				<h2>Chat route "respond"</h2>
+				<h3>handlers/gnip.rb</h3>
+
+<h3 class="monospace"><pre><code>module Lita
+  module Handlers
+    class Gnip < Handler
+      route(/gnip/, :gnop,
+        command: true, # "respond"
+        help: { "gnip" => "replies back with GNOP" })
+
+      def gnop response
+        response.reply "GNOP"
+      end
+
+      Lita.register_handler(self)
+    end
+  end
+end
+</code></pre>
+</h3>
+				<h3>lita_config.rb</h3>
+<h3 class="monospace"><pre><code>require './handlers/gnip.rb'
+# the rest...
+</code></pre>
+</h3>
+				<aside class="notes">
+				command: true makes it "respond" only
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h2>Chat routes in action</h2>
+ <h3>Hear</h3>
+ <h2 class="monospace"><pre class="terminal">
+Lita > I say ping
+PONG
+Lita > lita ping
+PONG
+</pre></h2>
+ <h3>Respond</h3>
+ <h2 class="monospace"><pre class="terminal">
+Lita > I say gnip
+Lita > lita gnip
+GNOP
+</pre></h2>
+				<aside class="notes">
+				"Hear" is basically the honey badger! It don't care!
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1>Chat routes</h1>
+				<h2><span class="monospace">response</span> helpers</h2>
+				<table>
+				<tbody>
+				<tr>
+					<td>reply</td>
+					<td>send message back to source (room or user)</td>
+				</tr>
+				<tr>
+					<td>reply_privately</td>
+					<td>send message back to user</td>
+				</tr>
+				<tr>
+					<td>matches</td>
+					<td>array of Regexp matches</td>
+				</tr>
+				<tr>
+					<td>match_data</td>
+					<td>MatchData from Regexp</td>
+				</tr>
+				<tr>
+					<td>args</td>
+					<td>array of args with the "command" removed</td>
+				</tr>
+				<tr>
+					<td>message</td>
+					<td>message object</td>
+				</tr>
+				<tr>
+					<td>user</td>
+					<td>user object</td>
+				</tr>
+				<tr>
+					<td>extensions</td>
+					<td>arbitrary data from Lita extension</td>
+				</tr>
+				</tbody>
+				</table>
+
+				<aside class="notes">
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h2>Helpers example</h2>
+
+				<h3>handlers/helpers.rb</h3>
+<pre><code>module Lita
+  module Handlers
+    class Stars < Handler
+      route(/helper[s|z] (\d*){1}/i, :puts_helper, command: true)
+
+      def puts_helper response
+        puts "matches: #{response.matches}"
+        puts "match_data: #{response.match_data}"
+        puts "args #{response.args}"
+        puts "message: #{response.message}"
+        puts "user: #{response.user}"
+        puts "extensions: #{response.extensions}"
+
+        response.reply_privately "Shh! This is private!"
+        response.reply "Hola!"
+      end
+
+      Lita.register_handler(self)
+    end
+  end
+end
+</code></pre>
+				<aside class="notes">
+				
+				</aside>
+				</section>
+
+
+				<section data-background="#337ab7">
+				<h2>helpers.rb output</h2>
+ <h3 class="monospace"><pre class="terminal">
+Lita > lita helpers 42
+matches: [["42"]]
+match_data: helpers 42
+args ["42"]
+message: #<Lita::Message:0x007fbb91398da8>
+user: #<Lita::User:0x007fbb91a362a0>
+extensions: {}
+Shh! This is private!
+Hola!
+</pre></h3>
+				<aside class="notes">
+				
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h2>Using <span class="monospace">args</span> helper</h2>
+
+				<h3>handlers/stars.rb</h3>
+<pre><code>module Lita
+  module Handlers
+    class Stars < Handler
+      route(/star[s|z] (\d*){1}/i, :star_rating, command: true,
+        help: { "stars &lt;num&gt;" => "replies with your star rating" })
+
+      def star_rating response
+        starz = response.args.first.to_i
+
+        if starz > 3
+          response.reply "Wow! #{starz} stars!\nYou must be an internationally recognized expert!"
+        else
+          response.reply "You are not your star count! We <3 you!"
+        end
+      end
+
+      Lita.register_handler(self)
+    end
+  end
+end</code></pre>
+				</section>
+
+				<section data-background="#337ab7">
+				<h2>stars.rb output</h2>
+ <h3 class="monospace"><pre class="terminal">
+Lita > lita stars 2
+You are not your star count! We <3 you!
+Lita > lita stars 4
+Wow! 4 stars!
+You must be an internationally recognized expert!
+</pre></h3>
+				<aside class="notes">
+				"Hear" is basically the honey badger! It don't care!
+				</aside>
+				</section>
+
+
+				<section data-background="#337ab7">
+				<h2>HTTP routes</h2>
+
+				<aside class="notes">
+				:-D
+				</aside>
+				</section>
+
+
+
+				<section data-background-transition="zoom">
+				<h1>Love your users!</h1>
+				<h2>Always add <span class="monospace">help</span></h2>
+ <h3 class="monospace"><pre class="terminal">
+Lita > lita help
+Lita: help - Lists help information for terms and command the robot will respond to.
+Lita: help COMMAND - Lists help information for terms or commands that begin with COMMAND.
+Lita: info - Replies with the current version of Lita.
+Lita: users find SEARCH_TERM - Find a Lita user by ID, name, or mention name.
+Lita: gnip - replies back with GNOP
+ping - replies back with PONG
+Lita: stars <num> - replies with your star rating</pre></h3>
+				<aside class="notes">
+				</aside>
+				</section>
+
+				<section data-background="green" data-background-transition="zoom">
+				<h1>Resources</h1>
+
+				<aside class="notes">
+				:-D
+				</aside>
+				</section>
 
 				<section>
 					<h1>Thank You!</h1>
