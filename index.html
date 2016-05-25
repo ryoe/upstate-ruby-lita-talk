@@ -11,6 +11,7 @@
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/night.css">
+		<link rel="stylesheet" href="css/overrides.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
@@ -230,16 +231,9 @@
 				</aside>
 				</section>
 
-				<section>
-				<h1>Hello, Lita</h1>
-
-				<aside class="notes">
-				:-D
-				</aside>
-				</section>
-
-				<section>
-				<h1>Regular Expressions</h1>
+				<section data-background="red">
+				<h1>WARN:</h1>
+				<h2>Regular Expressions</h2>
 				<p>Love 'em or hate 'em, you can't avoid them</p>
 
 				<img class="fragment" src="./images/link-me-regex.png">
@@ -250,6 +244,209 @@
 				If you need help, I got your back!
 				</aside>
 				</section>
+
+				<section data-background="#337ab7" data-background-transition="zoom">
+				<h1>Hello, Lita</h1>
+				<img src="./images/lita_512.png">
+				<p>
+				<a class="white-text" href="https://www.lita.io/">Lita.io/</a>
+				</p>
+
+				<aside class="notes">
+				:-D
+				</aside>
+				</section>
+
+
+				<section data-background="#337ab7">
+				<h1>Why Lita?</h1>
+				<ul>
+					<li>Runs on Ruby</li>
+					<li>Many chat adapters available</li>
+					<li>Easy testing plugins with RSpec extras</li>
+					<li>Leverage Ruby ecosystem:
+					<ul>
+						<li>RubyGems</li>
+						<li>Bundler</li>
+					</ul>
+					</li>
+				</ul>
+				<aside class="notes">
+				:-D
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1>Requirements</h1>
+				<ul>
+					<li>Ruby 2.x
+					<ul>
+						<li>or JRuby 9.0.0.0+</li>
+						<li>or Rubinus 2+</li>
+					</ul>
+					</li>
+					<li>Redis 2.6+</li>
+				</ul>
+				<aside class="notes">
+				:-D
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1>Install Lita</h1>
+				<p>&nbsp;</p>
+				<h2 class="monospace">gem install lita</h2>
+				<aside class="notes">
+				:-D
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1>Create your bot</h1>
+				<h2 class="monospace">lita new</h2>
+				<pre class="code">
+$ lita new
+      create  lita
+      create  lita/Gemfile
+      create  lita/lita_config.rb
+				</pre>
+				<aside class="notes">
+				:-D
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1>Run your bot</h1>
+				<h2 class="monospace">lita start</h2>
+
+				<img class="no-border" src="./images/lita-start.png">
+
+				<aside class="notes">
+				By default, lita is configured to use the shell adapter and does pretty much nothing else...
+				help command is about the extent of things.
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1>Name your bot</h1>
+				<p>Edit lita_config.rb</p>
+<pre>
+				<code>
+Lita.configure do |config|
+
+  # The name your robot will use.
+  config.robot.name = "Johnny Five"
+
+end
+				</code>
+				</pre>
+				<aside class="notes">
+				:-D
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1>Name your bot</h1>
+				<h2>Action shot</h2>
+
+				<img class="no-border" src="./images/lita-named-bot.png">
+
+				<aside class="notes">
+				:-D
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1>Make a chat bot</h1>
+				<h3>Because <b>Lita</b> is better with friends!</h3>
+				<aside class="notes">
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1>Adapters</h1>
+				<table>
+				<tbody>
+					<tr class="no-row-border">
+						<td>* Slack</td>
+						<td>* HipChat</td>
+					</tr>
+					<tr class="no-row-border">
+						<td>* Flowdock</td>
+						<td>* IRC</td>
+					</tr>
+					<tr class="no-row-border">
+						<td>* Campfire</td>
+						<td>* Chatwork</td>
+					</tr>
+					<tr class="no-row-border">
+						<td>* Facebook</td>
+						<td>* Gitter</td>
+					</tr>
+					<tr class="no-row-border">
+						<td>* Telegram</td>
+						<td>* idobata</td>
+					</tr>
+					<tr class="no-row-border">
+						<td>* Telegram (another!)</td>
+						<td>* Tox</td>
+					</tr>
+					<tr class="no-row-border">
+						<td>* Twitter</td>
+						<td>* VKontable</td>
+					</tr>
+					<tr class="no-row-border">
+						<td>* Discord</td>
+						<td></td>
+					</tr>
+				</tbody>
+
+				</table>
+
+				<p>
+				<a class="white-text" href="https://plugins.lita.io/#adapters">https://plugins.lita.io/#adapters</a>
+				</p>
+				<aside class="notes">
+				Lita adapters are used to connect to a chat service such as Slack, HipChat or IRC.
+				Creating an adapter is beyond the scope of this talk, but you *can* do it if you really want to.
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1>Adapter</h1>
+				<h2>Slack Example</h2>
+				<p>lita_config.rb</p>
+<pre>
+				<code>
+Lita.configure do |config|
+  config.robot.adapter = :slack
+  config.adapters.slack.token = "abcd-1234567890-hWYd21AmMH2UHAkx29vb5c1Y"
+end				</code>
+				</pre>
+				<p>Gemfile</p>
+<pre>
+				<code>
+source "https://rubygems.org"
+
+gem "lita"
+gem "lita-slack"
+
+				</code>
+				</pre>
+				<aside class="notes">
+				This example is Slack. There are several other config options, so always consult the docs for your chosen adapter.
+				Add the gem, bundle install and lita start!
+				</aside>
+				</section>
+
+				<section data-background="#337ab7">
+				<h1>Plugins</h1>
+				<h2>Extending Lita</h2>
+				<aside class="notes">
+				:-D
+				</aside>
+				</section>
+
 
 				<section>
 					<h1>Thank You!</h1>
@@ -269,7 +466,9 @@
 					<a href="http://twitter.com/ryoe_ok">@ryoe_ok on Twitter</a><br/>
 					<a href="https://github.com/ryoe">ryoe on GitHub</a>
 				</p>
-				</section>			</div>
+				</section>
+
+			</div>
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
