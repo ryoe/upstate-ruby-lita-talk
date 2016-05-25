@@ -983,24 +983,35 @@ end
 
 
 
-
-
-<!-- 				<section data-background-transition="zoom">
-				<h1>Love your users!</h1>
-				<h2>Always add <span class="monospace">help</span></h2>
- <h3 class="monospace"><pre class="terminal">
-Lita > lita help
-Lita: help - Lists help information for terms and command the robot will respond to.
-Lita: help COMMAND - Lists help information for terms or commands that begin with COMMAND.
-Lita: info - Replies with the current version of Lita.
-Lita: users find SEARCH_TERM - Find a Lita user by ID, name, or mention name.
-Lita: gnip - replies back with GNOP
-ping - replies back with PONG
-Lita: stars <num> - replies with your star rating</pre></h3>
+				<section data-background-transition="zoom">
+				<h1>Lita generators</h1>
+				<h2 class="monospace">lita handler</h2>
+ <pre class="smaller">
+$ lita handler lita-openworks-status-handler
+Do you want to test your plugin on Travis CI? ("yes" or "no", default is "no") no
+Do you want to generate code coverage information with SimpleCov and Coveralls.io? ("yes" or "no", default is "no") no
+      create  lita-openworks-status-handler/lib/lita/handlers/openworks_status_handler.rb
+      create  lita-openworks-status-handler/lib/lita-openworks-status-handler.rb
+      create  lita-openworks-status-handler/spec/lita/handlers/openworks_status_handler_spec.rb
+      create  lita-openworks-status-handler/spec/spec_helper.rb
+      create  lita-openworks-status-handler/locales/en.yml
+      create  lita-openworks-status-handler/templates/.gitkeep
+      create  lita-openworks-status-handler/Gemfile
+      create  lita-openworks-status-handler/lita-openworks-status-handler.gemspec
+      create  lita-openworks-status-handler/.gitignore
+      create  lita-openworks-status-handler/Rakefile
+      create  lita-openworks-status-handler/README.md
+If you plan to release this plugin as open source software, consider adding a LICENSE file to the root of the repository.
+Common open source software licenses can be found at http://choosealicense.com/.
+ </pre>
 				<aside class="notes">
+				Lita really encourages building handlers as RubyGems and testing with RSpec.
+
+				Here's what the lita handler generator produces. 
+				Don't accidentally do this in your lita service project. :D
 				</aside>
 				</section>
- -->
+
 				<section data-background="green" data-background-transition="zoom">
 				<h1>Resources</h1>
 				<h2>Lita</h2>
